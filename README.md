@@ -1,4 +1,5 @@
 Environment: java version 11
+
 In order to run tests run the following commands:
 1. Clone the repo
 2. Open command line from the project root directory
