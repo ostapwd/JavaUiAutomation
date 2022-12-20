@@ -18,3 +18,5 @@ To run tests in Docker do the following:
 As a result tests should be executed inside docker image (starts automatically)
 ![image](https://user-images.githubusercontent.com/18191661/208642588-ff5de235-7706-4049-98c8-fcd65cc3cd20.png)
 ![image](https://user-images.githubusercontent.com/18191661/208643157-4e127e95-aa13-43ed-adb1-50d03e61c6cb.png)
+Also after running tests in conainer a new recording will be saved in the root directory of the project
+![image](https://user-images.githubusercontent.com/18191661/208643462-3d4bd7c5-2185-437c-94e9-ed232b8a7670.png)
