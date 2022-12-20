@@ -1,10 +1,6 @@
 package listeners.testng;
 
 import driver.DriverFactory;
-import io.qameta.allure.restassured.AllureRestAssured;
-import io.restassured.RestAssured;
-import io.restassured.filter.log.RequestLoggingFilter;
-import io.restassured.filter.log.ResponseLoggingFilter;
 import lombok.extern.log4j.Log4j2;
 import org.testng.*;
 import org.testng.reporters.XMLReporter;
@@ -21,8 +17,6 @@ public class TestListener extends XMLReporter implements IReporter, ITestListene
     @Override
     public void onStart(ISuite suite) {
         super.getConfig().setGenerateTestResultAttributes(true);
-        RestAssured.filters(new AllureRestAssured());
-        RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
     }
 
     @Override

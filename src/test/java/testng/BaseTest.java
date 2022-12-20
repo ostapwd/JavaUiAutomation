@@ -11,9 +11,10 @@ import reporting.allure.ReportingHelper;
 @Listeners({TestListener.class, CustomTestListenerAdapter.class})
 public abstract class BaseTest {
 
+    @Parameters("config")
     @BeforeSuite(alwaysRun = true)
-    public void setUpEnvironment() {
-        Environment.getConfig();
+    public void setUpEnvironment(@Optional(value = "docker") String config) {
+        Environment.setConfig(config);
         RetryAnalyzer.setRetryLimit();
     }
 

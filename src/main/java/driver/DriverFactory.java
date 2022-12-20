@@ -23,6 +23,12 @@ public class DriverFactory {
                 driver = new ChromeDriver();
                 break;
 
+            case "docker":
+                WebDriverManager wdm = WebDriverManager.chromedriver().browserInDocker()
+                        .enableVnc().enableRecording();
+                driver = wdm.create();
+                break;
+
             default:
                 throw new RuntimeException("Wrong driver type!");
         }

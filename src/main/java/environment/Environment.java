@@ -7,8 +7,20 @@ import java.io.File;
 
 public class Environment {
 
-    public static Config getConfig() {
+    private static String config = "";
+
+    public static Config setConfig(String conf) {
+        config = conf;
         Config config = ConfigFactory.parseFile(new File("src/test/resources/environment.conf"));
-        return config.getConfig("env");
+        Config all = config.getConfig("env.all");
+        return config.getConfig("env." + conf).withFallback(all).resolve();
+    }
+
+    public static Config getConfig() {
+        if (config.isEmpty()) {
+            throw new RuntimeException("please provide config name from src/test/resources/environment.conf file");
+        } else {
+            return setConfig(config);
+        }
     }
 }
