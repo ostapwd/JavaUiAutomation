@@ -11,3 +11,9 @@ As a result test run report should be generated and opened in a browser
 ![image](https://user-images.githubusercontent.com/18191661/208615832-fc5fe8a8-8c06-4486-8b74-889c412a754e.png)
 To see test details please open 'Suites' tab and expand the test
 ![image](https://user-images.githubusercontent.com/18191661/208616011-b5ee6ffd-0479-48ad-8417-8252ff30c1ff.png)
+
+To run tests in Docker do the following:
+1. Install Docker engine
+2. Run 'gradle clean test -Dconfig=docker'
+As a result tests should be executed inside docker image (starts automatically)
+![image](https://user-images.githubusercontent.com/18191661/208642588-ff5de235-7706-4049-98c8-fcd65cc3cd20.png)
