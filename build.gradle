@@ -1,0 +1,65 @@
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'io.qameta.allure'
+
+
+repositories {
+    maven { url "https://repo.maven.apache.org/maven2" }
+    maven { url "https://plugins.gradle.org/m2/" }
+    mavenCentral()
+}
+
+buildscript {
+    repositories {
+        maven { url "https://repo.maven.apache.org/maven2" }
+        maven { url "https://plugins.gradle.org/m2/" }
+        mavenCentral()
+    }
+    dependencies {
+        classpath "io.qameta.allure:allure-gradle:+"
+    }
+}
+
+allure {
+    version = '2.17.2'
+    aspectjweaver = true
+    useTestNG {
+        version = '2.17.2'
+    }
+    downloadLink = 'https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.17.2/allure-commandline-2.17.2.zip'
+}
+
+dependencies {
+    implementation 'org.seleniumhq.selenium:selenium-java:4.7.2'
+    implementation 'io.github.bonigarcia:webdrivermanager:5.3.1'
+    implementation 'io.rest-assured:rest-assured:4.2.0'
+    implementation 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
+    testImplementation 'org.projectlombok:lombok:1.18.12'
+    implementation 'com.typesafe:config:1.4.0'
+    implementation 'org.testng:testng:7.1.0'
+    implementation 'org.apache.logging.log4j:log4j-core:2.13.1'
+    implementation 'io.qameta.allure:allure-gradle:2.8.1'
+    implementation 'io.qameta.allure:allure-testng:2.17.3'
+    implementation 'io.qameta.allure:allure-rest-assured:2.17.3'
+    implementation 'io.qameta.allure:allure-attachments:2.17.3'
+}
+
+test {
+    systemProperties System.getProperties()
+    useTestNG() {
+        options.useDefaultListeners true
+        options.parallel System.getProperty('parallel', 'suites')
+        options.threadCount System.getProperty('threadCount', '1') as int
+        testLogging {
+            events = ['PASSED', 'FAILED', 'SKIPPED']
+        }
+    }
+    reports.html.enabled = false
+}
+
+configurations {
+    testCompile
+}
